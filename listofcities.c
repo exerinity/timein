@@ -1,5 +1,14 @@
 #include "listofcities.h"
-// I generated this with timedatectl list-timezones on my computer, so, some might be missing, some might be invalid, who knows
+#ifndef LISTOFCITIES_H
+#define LISTOFCITIES_H
+
+#include <stddef.h>
+
+typedef struct { const char *city; const char *tz; } CityTZ;
+
+extern const CityTZ cities[];
+
+#endif
 const CityTZ cities[] = {
     {"Abidjan", "Africa/Abidjan"},
     {"Accra", "Africa/Accra"},
