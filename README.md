@@ -32,8 +32,6 @@ timein +10 # UTC+10
 timein -4 # UTC-4
 timein 5 # UTC+5; a plus is not required for forward-facing zones
 
-timein aest # Australian Eastern Standard Time, or +10
-
 timein about # info
 ```
 
