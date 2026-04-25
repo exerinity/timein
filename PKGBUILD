@@ -8,7 +8,7 @@ url="https://github.com/exerinity/timein"
 license=('MIT')
 depends=('glibc')
 makedepends=('git')
-source=("$pkgname::git+https://github.com/exerinity/timein.git")
+source=("$pkgname-$pkgver.tar.gz::https://github.com/exerinity/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
 sha256sums=('SKIP')
 
 pkgver() {
