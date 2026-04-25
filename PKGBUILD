@@ -1,6 +1,6 @@
 # Maintainer: exerinity <me@exerinity.com>
 pkgname=timein-git
-pkgver=1
+pkgver=2
 pkgrel=1
 pkgdesc="A minimal tool for quickly getting the time and date in another city or timezone"
 arch=('x86_64')
@@ -9,7 +9,7 @@ license=('MIT')
 depends=('glibc')
 makedepends=('git')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/exerinity/$pkgname/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('7db81e1885b6bec7dc945d53cc4f2575ae3e6bcffb8364e073dcbee77b6f7586')
+sha256sums=('7e56547cddd486b2f0eeac311ad2fc7692f503ba07150d40eb9f37852d388bbc')
 
 pkgver() {
     cd "$pkgname"
