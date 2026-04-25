@@ -1,6 +1,19 @@
 # timein
 timein is a minimal CLI tool for quickly getting the time and date in another city or timezone. This is my first C project after making fuckin everything in JavaScript
 
+## Features
+- Query by city: search for cities by name with fuzzy matching
+- Query by UTC offset: directly specify timezone offsets (`+10`, `-4`, `5`)
+- Lots of cities: [includes over 580 cities worldwide](listofcities.c)
+- Dual time format: displays time in both 12 hour (a/pm) and 24 hour formats
+
+## How it works
+timein uses a database of cities mapped to their IANA timezone identifiers. I generated it using `timedatectl list-timezones | awk -F/ '{print $NF, $0}' | sort`
+
+For city queries, it performs fuzzy string matching using a Levenshtein inspired distance algorithm to find the closest match
+
+For UTC offsets, it directly calculates the time difference from UTC
+
 ## Installation
 
 ### AUR
