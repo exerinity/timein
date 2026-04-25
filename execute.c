@@ -23,13 +23,19 @@ static void print_time_for_offset(int offset_hours) {
     if (hour12 == 0) hour12 = 12;
     const char *ampm = t->tm_hour < 12 ? "am" : "pm";
 
-    printf("%s, %s %d, %d - %d:%02d:%02d %s / %02d:%02d:%02d\n",
-        days[t->tm_wday], months[t->tm_mon], t->tm_mday, t->tm_year + 1900,
+    char label[16];
+    if (offset_hours >= 0)
+        snprintf(label, sizeof(label), "UTC+%d", offset_hours);
+    else
+        snprintf(label, sizeof(label), "UTC%d", offset_hours);
+
+    printf("%s: %s, %s %d, %d - %d:%02d:%02d %s / %02d:%02d:%02d\n",
+        label, days[t->tm_wday], months[t->tm_mon], t->tm_mday, t->tm_year + 1900,
         hour12, t->tm_min, t->tm_sec, ampm,
         t->tm_hour, t->tm_min, t->tm_sec);
 }
 
-static void print_time_for_tz(const char *tz) {
+static void print_time_for_tz(const char *city, const char *tz) {
     setenv("TZ", tz, 1);
     tzset();
 
@@ -44,17 +50,18 @@ static void print_time_for_tz(const char *tz) {
     if (hour12 == 0) hour12 = 12;
     const char *ampm = t->tm_hour < 12 ? "am" : "pm";
 
-    printf("%s, %s %d, %d - %d:%02d:%02d %s / %02d:%02d:%02d\n",
-        days[t->tm_wday], months[t->tm_mon], t->tm_mday, t->tm_year + 1900,
+    printf("%s: %s, %s %d, %d - %d:%02d:%02d %s / %02d:%02d:%02d\n",
+        city, days[t->tm_wday], months[t->tm_mon], t->tm_mday, t->tm_year + 1900,
         hour12, t->tm_min, t->tm_sec, ampm,
         t->tm_hour, t->tm_min, t->tm_sec);
 }
 
 int main(int argc, char *argv[]) {
     if (argc == 2 && strcmp(argv[1], "about") == 0) {
-    print_about();
-    return 0;
+        print_about();
+        return 0;
     }
+
     if (argc < 2) {
         fprintf(stderr, "usage: timein <city|offset>\nExamples: timein tokyo / timein +10 / timein 3 / timein -4\n");
         return 1;
@@ -87,6 +94,6 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "closest find: %s (distance %d -- try again?)\n",
                 best->city, dist);
 
-    print_time_for_tz(best->tz);
+    print_time_for_tz(best->city, best->tz);
     return 0;
 }
