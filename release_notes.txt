@@ -1,0 +1,9 @@
+v3 - April 27, 2026
+- Refactored finding logic, it should be more accurate now 
+- Added a sun / moon icon to the end
+
+v2 - April 25, 2026
+Now also shows the city/timezone for clarity
+
+v1 - April 25, 2026
+Hello world
