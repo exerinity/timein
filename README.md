@@ -18,18 +18,21 @@ For UTC offsets, it directly calculates the time difference from UTC
 
 ## Installation
 
-### AUR
+### Arch Linux
 ```bash
 yay -S timein # or whatever aur helper you prefer
 ```
 
-### Manual
+### Other Linux distros / macOS
 ```bash
 git clone https://github.com/exerinity/timein
 cd timein
 make
 sudo install -Dm755 timein /usr/local/bin/timein # if you want to run it from anywhere
 ```
+
+### Windows
+I don't care
 
 ## Usage
 
